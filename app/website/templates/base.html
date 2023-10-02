@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <!-- character set used for this document -->
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- bootstrap -->
+    <!-- for CSS --> 
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+      crossorigin="anonymous"
+    />
+    <!-- for JS -->
+    <link
+    rel="stylesheet"
+    href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+    crossorigin="anonymous"/>
+
+
+    <!-- Jinga blocks go in # '{\% \%}' (without the '\' chars - error without these, even though in comments) (for loops / if statements ect) This can be overridden in a child template that inherits this, here blocks name is 'title' but can name whatever you want -->
+    <!-- Variables passed to templates via the route can be access using Jinjas: \{\{ var ... restricted Python code \}\} (without escape chars - error without even though in comments)-->
+    <!-- If statements written as:
+    {\% if var == True \%}
+    block to run if true!
+    {\% endif \%} -->
+    <title>{% block title %}Base{% endblock %}</title>
+  </head>
+
+  <body>
+
+    <!-- navbar - uses bootstrap classes -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <!-- button extends navbar for mobile devices -->
+        <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbar"
+      >
+        <!-- loads navbar button icon -->
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <!-- navigation items in navbar -->
+      <!-- collapsable navbar -->
+      <div class="collapse navbar-collapse" id="navbar">
+        <!-- actual navigation items -->
+        <div class="navbar-nav">
+          <a class="nav-item nav-link" id="login" href="/login ">Login</a>
+          <a class="nav-item nav-link" id="signUp" href="/sign-up ">Sign Up</a>
+          <a class="nav-item nav-link" id="logout" href="/logout ">Logout</a>
+          <a class="nav-item nav-link" id="home" href="/ ">Home</a>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container">
+      {% block content %}
+      {% endblock %}
+    </div>
+
+
+    <!-- JS related to bootstrap -->
+    <script
+      src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
