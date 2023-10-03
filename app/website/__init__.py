@@ -10,7 +10,7 @@ db = SQLAlchemy()
 DB_NAME = "database.db"
 
 
-# creates a Flask app, iniitialises secret key, registers blueprints, adds prefixes and returns app
+# creates a Flask app, iniitialises secret key, registers blueprints, adds prefixes, imports db models, creates db, initialises login manager, redirects user to login page when not logged in,  defines load_user callback function and returns app
 def create_app():
     app = Flask(__name__) # initialises Flask
     app.config['SECRET_KEY'] = 'sdfsfs'  # secret key for app
@@ -37,10 +37,11 @@ def create_app():
     login_manager.login_view = 'auth.login' # where flask should redirect if not logged in
     login_manager.init_app(app) # tells login manager which app we are using
 
-    # load users
+
+    # callback function which takes one argument 'id', which is the unique identifier (usually the user's ID) stored in the user's session. Helps Flask-Login load a user object based on a user's unique identifer
     @login_manager.user_loader
     def load_user(id):
-        return User.query.get(int(id)) # gets primary key and checks is equal to int version of id passed as argument
+        return User.query.get(int(id)) # queries database, gets primary key and checks is equal to int version of id passed as argument
 
     return app
 

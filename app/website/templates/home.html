@@ -4,6 +4,33 @@
 
 {% block title %}Home{% endblock %}
 
+
 {% block content %}
-<h1>This is the home page</h1>
+
+<h1 align="center">Notes</h1>
+
+<!-- list allows us to show all different notes, has bootstrap class -->
+<ul class="list-group list-group-flush" id="notes">
+    <!-- loops all notes associated with user (field in user db stores notes associated with user) -->
+    {% for note in user.notes %}
+        <li class="list-group-item">
+            {{ note.data }}
+            <!-- button to delete note, calls deleteNote() function in index.js and passes note.id -->
+            <button type="button" class="close" onClick="deleteNote({{ note.id }})">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </li>
+    {% endfor %}
+</ul>
+
+<!-- form with button to add note, when pressed sends POST request to URL with note -->
+<form method="POST">
+    <!-- textarea for notes -->
+    <textarea name="note" id="note" class="form-control"></textarea>
+    <br />
+    <div align="center">
+        <button type="submit" class="btn btn-primary">Add Note</button>
+    </div>
+</form>
+
 {% endblock %}

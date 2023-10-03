@@ -53,10 +53,13 @@
       <div class="collapse navbar-collapse" id="navbar">
         <!-- actual navigation items -->
         <div class="navbar-nav">
-          <a class="nav-item nav-link" id="login" href="/login ">Login</a>
-          <a class="nav-item nav-link" id="signUp" href="/sign-up ">Sign Up</a>
-          <a class="nav-item nav-link" id="logout" href="/logout ">Logout</a>
-          <a class="nav-item nav-link" id="home" href="/ ">Home</a>
+          {% if user.is_authenticated %} <!-- if user is signed in show Home and Logout in navbar-->
+            <a class="nav-item nav-link" id="home" href="/ ">Home</a>
+            <a class="nav-item nav-link" id="logout" href="/logout ">Logout</a>
+          {% else %} <!-- if user isn't logged in, only show login and sign-up in navbar -->
+            <a class="nav-item nav-link" id="login" href="/login ">Login</a>
+            <a class="nav-item nav-link" id="signUp" href="/sign-up ">Sign Up</a>
+          {% endif %}
         </div>
       </div>
     </nav>
@@ -122,5 +125,9 @@
       integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
       crossorigin="anonymous"
     ></script>
+
+    <script 
+      type="text/javascript"
+      src="{{ url_for('static', filename='index.js') }}"></script>
   </body>
 </html>

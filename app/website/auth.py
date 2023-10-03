@@ -6,7 +6,7 @@
 from flask import Blueprint, render_template, request, flash, redirect, url_for
 from .models import User # imports User database
 from werkzeug.security import generate_password_hash, check_password_hash # module to deal with hashing a password
-from . import db # imports database
+from . import db # imports database (from __init__.py import db)
 from flask_login import login_user, login_required, logout_user, current_user
 
 
@@ -38,7 +38,7 @@ def login():
         else:
             flash('Email does not exist.', category='error')
 
-    return render_template("login.html", boolean=True) 
+    return render_template("login.html", user=current_user) 
 
 
 # logout page
@@ -80,11 +80,11 @@ def sign_up():
             db.session.add(new_user)
             db.session.commit()
 
-            login_user(user, remember=True) # remembers user is logged in unless user clears browsing history or session or server restarts
+            login_user(new_user, remember=True) # remembers user is logged in unless user clears browsing history or session or server restarts
 
             flash('Account created!', category='success') # flashes success message to the user
 
             # finds url for home function and redirects user - could use '/' in url_for, but if ever change route, will stop working
             return redirect(url_for('views.home'))
 
-    return render_template("sign_up.html")
+    return render_template("sign_up.html", user=current_user)
