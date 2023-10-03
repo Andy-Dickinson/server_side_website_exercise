@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8" />
     <!-- character set used for this document -->
+    <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <!-- bootstrap -->
@@ -20,11 +20,15 @@
     crossorigin="anonymous"/>
 
 
-    <!-- Jinga blocks go in # '{\% \%}' (without the '\' chars - error without these, even though in comments) (for loops / if statements ect) This can be overridden in a child template that inherits this, here blocks name is 'title' but can name whatever you want -->
+    <!-- Jinga blocks syntax: '{\% \%}' (without the '\' chars - error without these, even though in comments) (for loops / if statements ect) This can be overridden in a child template that inherits this, below the blocks name is 'title' but can name it whatever you want -->
     <!-- Variables passed to templates via the route can be access using Jinjas: \{\{ var ... restricted Python code \}\} (without escape chars - error without even though in comments)-->
     <!-- If statements written as:
     {\% if var == True \%}
     block to run if true!
+    {\% elif condition \%}
+    elif block
+    {\% else \%}
+    else block
     {\% endif \%} -->
     <title>{% block title %}Base{% endblock %}</title>
   </head>
@@ -33,7 +37,7 @@
 
     <!-- navbar - uses bootstrap classes -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-      <!-- button extends navbar for mobile devices -->
+      <!-- button extends navbar for mobile devices / small window -->
         <button
         class="navbar-toggler"
         type="button"
@@ -57,6 +61,45 @@
       </div>
     </nav>
 
+
+    <!-- displays flash messages to user, note Jinja booleans are lowercase -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        {% for category, message in messages %}
+
+          {% if category == 'error' %}
+          
+            <!-- bootstrap class for error message -->
+            <div class="alert alert-danger alter-dismissable fade show" role="alert">
+              <!-- actual message -->
+              {{ message }}
+              <!-- button to close message -->
+              <button type="button" class="close" data-dismiss="alert">
+                <!-- (fancy)x character to close -->
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+
+          {% else %}
+
+            <!-- bootstrap class for success message -->
+            <div class="alert alert-success alter-dismissable fade show" role="alert">
+              <!-- actual message -->
+              {{ message }}
+              <!-- button to close message -->
+              <button type="button" class="close" data-dismiss="alert">
+                <!-- (fancy)x character to close -->
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+          
+          {% endif %}
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+
+    
+    <!-- main content of page -->
     <div class="container">
       {% block content %}
       {% endblock %}

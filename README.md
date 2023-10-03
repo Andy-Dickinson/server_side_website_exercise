@@ -12,6 +12,9 @@ Directory 'website':
     __init__.py:
         makes 'website' directory a package so 'website' dir can be imported and files inside can run automatically
 
+    views.py:
+        store all views (URL endpoints) for front end aspect of website - routes
+
     auth.py:
         store all routes (URL endpoints) relating to authentication
 
@@ -23,9 +26,6 @@ Directory 'website':
 
     models.py:
         used to store database models
-
-    views.py:
-        store all views (URL endpoints) for front end aspect of website - routes
 
     * Directory 'static':
         stores static files (such as JS, CSS, img)
