@@ -11,6 +11,7 @@ Directory 'website':
 
     __init__.py:
         makes 'website' directory a package so 'website' dir can be imported and files inside can run automatically.
+        initialises database (using flask_sqlalchemy), and creates a database object.
         create_app():
             creates a Flask app, iniitialises secret key, registers blueprints, adds prefixes, imports db models, creates db, initialises login manager, redirects user to login page when not logged in ('/' route otherwise), defines load_user callback function and returns app
         create_database(app):
