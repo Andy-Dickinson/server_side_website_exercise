@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Modal with Form</title>
+        <!-- bootstrap 5 css -->
+        <link rel="stylesheet" type="text/css" href="bootstrap-5.3.2-dist/css/bootstrap.min.css">
+
+
+        
+    </head>
+
+    <body>
+        <h1>modal example</h1>
+
+        <!-- trigger modal -->
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#loginModal">
+            Login/Signup
+        </button>
+
+        <!-- Modal -->
+        <!-- fade effect when opens/closes modal, assigns id which is used to trigger it, tabindex Specifies that the modal is part of the document's tab order but not initially focused, labelledby associates modal with tile for accessibility, hidden makes modal hidden initially -->
+        <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+            <!-- defines modal-dialog which contains modals content -->
+            <div class="modal-dialog">
+            <!-- contais actual modal content incl header, body, footer -->
+            <div class="modal-content">
+                <!-- header, typically includes title and close button -->
+                <div class="modal-header">
+                <h5 class="modal-title" id="loginModalLabel">Login or Signup</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <!-- contains main content of modal including form -->
+                <div class="modal-body">
+                <!-- defines form inside the modal -->
+                <form>
+                    <!-- 'mb-3 creates space between form elements (margins) -->
+                    <div class="mb-3">
+                    <!-- form field label -->
+                    <label for="username" class="form-label">Username</label>
+                    <!-- form input field -->
+                    <input type="text" class="form-control" id="username" name="username" placeholder="Enter your username" required autocomplete="username">
+                    </div>
+                    <div class="mb-3">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email" required autocomplete="email">
+                    </div>
+                    <div class="mb-3">
+                    <label for="password" class="form-label">Password</label>
+                    <input type="password" class="form-control" id="password" name="password" placeholder="Enter your password" required autocomplete="current-password">
+                    </div>
+                    <!-- form submit button -->
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+                </div>
+            </div>
+            </div>
+        </div>
+        
+        <!-- bootstrap 5 bundle - js and popper -->
+        <script src="bootstrap-5.3.2-dist/js/bootstrap.bundle.min.js"></script>
+    </body>
+</html>
