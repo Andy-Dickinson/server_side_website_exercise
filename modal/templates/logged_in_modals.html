@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block modalScript %}
+    <script src="{{ url_for('static', filename='js/logged_in_modals.js') }}"></script>
+{% endblock %}
+
+
+{% block navItems %}
+    <li class="nav-item">
+        <a class="nav-link" onclick="openModal('subs')">Manage subscriptions</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" onclick="openModal('hc')">Update handicap</a>
+    </li>
+{% endblock %}

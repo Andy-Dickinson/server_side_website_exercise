@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Modal with Form</title>
+
+        <!-- adds favicon icon -->
+        <link rel="icon" type="image/ico" href="{{ url_for('static', filename='img/favicon.ico') }}">
+
+        <!-- bootstrap 5 css -->
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='bootstrap-5.3.2-dist/css/bootstrap.min.css') }}">
+
+        
+        {% block modalScript %}
+            <script src="{{ url_for('static', filename='js/base_modals.js') }}"></script>        
+        {% endblock %}
+
+</head>
+<body>
+
+<!-- Common Navbar for Both Pages -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">My Website</a>
+    <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+            <a class="nav-link" href="https://www.google.com">Google</a>
+        </li>
+
+        <!-- change blocks to if loops -->
+        {% block navItems %}
+        <li class="nav-item">
+            <a class="nav-link" onclick="openModal('login')">Login</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" onclick="openModal('signup')">Sign up</a>
+        </li>
+        {% endblock %}
+    </ul>
+</nav>
+
+{% block content %}
+{% endblock %}
+
+
+<!-- hidden trigger button for modal, when route calls a page which makes use of it, should include event listener and click function -->
+<button type="button" id="modalTrigger" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal" style="display: none;"></button>
+
+<!-- Include Modal Structure -->
+<div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="myModalLabel"></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+<!-- jquery library, must be included prior to bootstrap -->
+<script src="{{ url_for('static', filename='jquery/jquery.js') }}"></script>
+
+<!-- bootstrap 5 bundle - js and popper -->
+<script src="{{ url_for('static', filename='bootstrap-5.3.2-dist/js/bootstrap.bundle.min.js') }}"></script>
+</body>
+</html>
