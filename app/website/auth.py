@@ -84,6 +84,14 @@ def sign_up():
 
             flash('Account created!', category='success') # flashes success message to the user
 
+
+
+
+            # SHOULD VALIDATE THE 'NEXT' PARAMETER HERE OR VULNERABLE TO OPEN REDIRECTS....SEE DOCUMENTATION https://flask-login.readthedocs.io/en/latest/
+
+
+
+
             # finds url for home function and redirects user - could use '/' in url_for, but if ever change route, will stop working
             return redirect(url_for('views.home'))
 
