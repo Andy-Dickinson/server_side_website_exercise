@@ -11,11 +11,11 @@
         <!-- bootstrap 5 css -->
         <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='bootstrap-5.3.2-dist/css/bootstrap.min.css') }}">
 
-        
+         
         <!-- Need to figure out how to set urls dynamically, modalUrls variable is not set correctly here (passed in via route) -->
         {% block modalScript %}
             <script>
-            var modalUrls = {{ modal_urls | tojson | safe }};
+           
             function openModal(modalType) {
                 const modal = document.getElementById("myModal");
                 const modalTitle = modal.querySelector(".modal-title");
@@ -31,7 +31,6 @@
                     // Create a button
                     const button = document.createElement('a');
                     button.className = 'btn btn-primary';
-                    button.href = modalUrls.login_url; // Use the URL from the global variable
                     button.textContent = 'Log in';
 
                     // Append the button to the content div
